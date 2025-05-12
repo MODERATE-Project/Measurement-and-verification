@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+scikit-image = "*"
+scikit-learn = "*"
+scipy = "*"
+plotly = "*"
+numpy = "*"
+seaborn = "*"
+lightgbm = "*"
+cloudpickle = "*"
+optuna = "*"
+pyecharts = "*"
+matplotlib = "*"
+matplotlib-inline = "*"
+pandas = "*"
+tensorflow = "*"
+nbformat = "==4.2.0"
+
+[dev-packages]
+ipykernel = "*"
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.6"

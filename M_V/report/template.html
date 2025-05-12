@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title>Model Report</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+          <a href="https://energyefficientbuilding.eurac.edu/en/">
+            <img src="static/img/eurac_new_logo_special.png" alt="Eurac Energy Efficient Building Logo">
+          </a>
+        </div>
+    </header>
+
+    <main class="main" id="main" style="width: 100vw; margin:0px">
+        
+        <div class="container">
+            <div class="title" style="margin-top:10px">
+                <h1>Measurement and Verification report</h1>
+            </div>
+            <!-- Baseline Period:Testing -->
+            <p class="title2" style="margin-left: 2rem; color: #6BAEE2">
+                Model Evaluation
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">REPORTING PERIOD - WINTER</h2>
+            <hr class="title-line" style="background-color: #6BAEE2; border:1px solid #6BAEE2">
+            <!-- Grafico inserito -->
+            {{ reporting_line_chart_winter|safe }}
+
+            <!-- Table Summury Winter -->
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Energy saving evaluation</h2>
+            <hr class="title-line" style="background-color: #6BAEE2; border:1px solid #6BAEE2">
+            <table class="energy-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Measured Energy (kWh)</th>
+                        <th>Simulated Energy (kWh)</th>
+                        <th>Energy Saving (kWh)</th>
+                        <th>Economic Saving (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- This section will be populated by Python -->
+                    {{table_rows_winter}}
+                </tbody>
+            </table>
+
+            <!-- Gauge Winter -->
+            <div class="canvas-wrapper">{{ gauge_winter }}</div>
+                  
+            <!-- METRICS Winter -->
+            <p class="title2" style="margin-left: 2rem;">
+                Metrics - Winter period
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Daily average energy consumption - kWh</h2>
+            <hr class="title-line" style="background-color: #6BAEE2; border:1px solid #6BAEE2"> 
+            <!-- ENERGY CONSUMPTION -->
+            <div class=container_card>
+                <div class="left-column">
+                    <div class="fieldset-container">
+                        <fieldset>
+                            <legend>Work days</legend>
+                            <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_workinghours_actual}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-solid--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_workinghours_simulated}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-outline--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_closinghours_actual}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-solid--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_closinghours_simulated}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-outline--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <fieldset>
+                        <legend>Weekend</legend>
+                        <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_workinghours_actual}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-solid--energy-socket"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_workinghours_simulated}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-outline--energy-socket"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_closinghours_actual}}°C</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-solid--energy-socket"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_closinghours_simulated}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-outline--energy-socket"></span>
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Daily average indoor temperature - °C</h2>
+            <hr class="title-line" style="background-color: #6BAEE2; border:1px solid #6BAEE2"> 
+
+            <div class=container_card>
+                <div class="left-column">
+                    <div class="fieldset-container">
+                        <fieldset>
+                            <legend>Work days</legend>
+                            <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_workinghours_actual}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_workinghours_simulated}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature-outline"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_closinghours_actual}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_closinghours_simulated}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature-outline"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <fieldset>
+                        <legend>Weekend</legend>
+                        <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_workinghours_actual}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_workinghours_simulated}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature-outline"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_closinghours_actual}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_closinghours_simulated}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature-outline"></span>
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                    <!-- {{gauge_winter}} -->
+                </div>
+            </div>
+
+            <hr class="separator" style="background-color: #6BAEE2; border:1px solid #6BAEE2"> 
+            
+            <!-- Baseline Period:Testing -->
+            <p class="title2" style="margin-left: 2rem; color: #f36e21">
+                Model Evaluation
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">REPORTING PERIOD - SUMMER</h2>
+            <hr class="title-line" style="background-color: #f36e21; border:1px solid #f36e21">
+            <!-- Grafico inserito -->
+            {{ reporting_line_chart_summer|safe }}
+            
+            <!-- Table Summury Summer -->
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Energy saving evaluation</h2>
+            <hr class="title-line" style="background-color: #f36e21; border:1px solid #f36e21">
+            <table class="energy-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Measured Energy (kWh)</th>
+                        <th>Simulated Energy (kWh)</th>
+                        <th>Energy Saving (kWh)</th>
+                        <th>Economic Saving (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- This section will be populated by Python -->
+                    {{table_rows_summer}}
+                </tbody>
+            </table>
+
+            <!-- Gauge Summer -->
+            <div class="canvas-wrapper">{{ gauge_summer }}</div>
+
+            <!-- METRICS Summer -->
+            <p class="title2" style="margin-left: 2rem;">
+                Metrics - Summer period
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Daily average energy consumption - kWh</h2>
+            <hr class="title-line" style="background-color: #f36e21; border:1px solid #f36e21"> 
+            <!-- ENERGY CONSUMPTION -->
+            <div class=container_card>
+                <div class="left-column">
+                    <div class="fieldset-container">
+                        <fieldset>
+                            <legend>Work days</legend>
+                            <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_workinghours_actual_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-solid--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_workinghours_simulated_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-outline--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_closinghours_actual_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-solid--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_energy_workdays_closinghours_simulated_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="icon-park-outline--energy-socket"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <fieldset>
+                        <legend>Weekend</legend>
+                        <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_workinghours_actual_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-solid--energy-socket"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_workinghours_simulated_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-outline--energy-socket"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_closinghours_actual_summer}}°C</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-solid--energy-socket"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_energy_weekend_closinghours_simulated_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="icon-park-outline--energy-socket"></span>
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Daily average indoor temperature - °C</h2>
+            <hr class="title-line" style="background-color: #f36e21; border:1px solid #f36e21"> 
+
+            <div class=container_card>
+                <div class="left-column">
+                    <div class="fieldset-container">
+                        <fieldset>
+                            <legend>Work days</legend>
+                            <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_workinghours_actual_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_workinghours_simulated_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature-outline"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                                <div class="grid">
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Actual</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_closinghours_actual_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-card-content">
+                                            <div class="info-card-title">Simulated</div>
+                                            <div class="info-card-value">{{ind_temp_workdays_closinghours_simulated_summer}}</div>
+                                        </div>
+                                        <div class="info-card-icon">
+                                            <span class="mdi--home-temperature-outline"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <fieldset>
+                        <legend>Weekend</legend>
+                        <h3 style ="margin-bottom: 0px;">Working hours: 9:00 - 20:00</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_workinghours_actual_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_workinghours_simulated_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature-outline"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 style ="margin-bottom: 0px;">Closing hours: 20:01 - 8:59</h3>
+                            <div class="grid">
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Actual</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_closinghours_actual_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature"></span>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-card-content">
+                                        <div class="info-card-title">Simulated</div>
+                                        <div class="info-card-value">{{ind_temp_weekend_closinghours_simulated_summer}}</div>
+                                    </div>
+                                    <div class="info-card-icon">
+                                        <span class="mdi--home-temperature-outline"></span>
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                    <!-- {{gauge_winter}} -->
+                </div>
+            </div>
+
+            <hr class="separator" style="background-color: #f36e21; border:1px solid #f36e21"> 
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-footer"> 
+            <div class="container" style="margin-bottom: 0rem; box-shadow: none; border-radius: 0px;">
+                <div class="footer-content">
+                
+                <!-- Left -->
+                <div class="footer-left">
+                    <img src="static/img/moderate_logo.png" alt="Moderate Logo">
+                    <p>
+                    Horizon Europe research and innovation programme under grant agreement No 101069834. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or CINEA. Neither the European Union nor the granting authority can be held responsible for.
+                    </p>
+                </div>
+    
+                <!-- Right -->
+                <div class="footer-right">
+                    <h3>About MODERATE</h3>
+                    <a href="https://moderate-project.eu/in-a-nutshell/">In a nutshell</a>
+                    <a href="https://moderate-project.eu/news/">News</a>
+                    <a href="https://moderate-project.eu/contact/">Contact</a>
+                </div>
+    
+                </div>
+            </div>
+        </div>
+    </footer> 
+
+</body>
+</html>

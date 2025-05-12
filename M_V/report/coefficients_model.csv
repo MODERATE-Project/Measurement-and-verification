@@ -1,0 +1,27 @@
+,Feature,Coefficient,Abs_Coefficient
+3,Internal temperature area 4 (Celsius degree),4.659640750154096,4.659640750154096
+0,Internal temperature area 1 (Celsius degree),-3.4813684512790086,3.4813684512790086
+17,Internal temperature area 2 (Celsius degree)_lag_1,-1.775108182398478,1.775108182398478
+1,Internal temperature area 2 (Celsius degree),1.586258313877712,1.586258313877712
+2,Internal temperature area 3 (Celsius degree),0.9159595621659841,0.9159595621659841
+25,Internal temperature area 2 (Celsius degree)_lag_168,0.6770850812492804,0.6770850812492804
+21,Internal temperature area 2 (Celsius degree)_lag_6,-0.3466676941508384,0.3466676941508384
+22,Internal temperature area 2 (Celsius degree)_lag_12,-0.33039827157059204,0.33039827157059204
+16,External temperature (Celsius degree)_lag_168,-0.3075001155400267,0.3075001155400267
+4,External temperature (Celsius degree),-0.29864672827768834,0.29864672827768834
+19,Internal temperature area 2 (Celsius degree)_lag_3,-0.26704022293223173,0.26704022293223173
+20,Internal temperature area 2 (Celsius degree)_lag_4,-0.2583700476228736,0.2583700476228736
+8,External temperature (Celsius degree)_lag_1,-0.19665032735798277,0.19665032735798277
+10,External temperature (Celsius degree)_lag_3,-0.1772299968855561,0.1772299968855561
+23,Internal temperature area 2 (Celsius degree)_lag_24,-0.15828912851164617,0.15828912851164617
+11,External temperature (Celsius degree)_lag_4,-0.14345101096465301,0.14345101096465301
+14,External temperature (Celsius degree)_lag_24,0.1335087358337328,0.1335087358337328
+9,External temperature (Celsius degree)_lag_2,-0.132343410332622,0.132343410332622
+18,Internal temperature area 2 (Celsius degree)_lag_2,-0.13223488061615532,0.13223488061615532
+6,dayofweek,-0.10773854964701995,0.10773854964701995
+13,External temperature (Celsius degree)_lag_12,-0.0627277424956643,0.0627277424956643
+5,hour,0.06234507480143538,0.06234507480143538
+24,Internal temperature area 2 (Celsius degree)_lag_48,-0.055675931523945996,0.055675931523945996
+15,External temperature (Celsius degree)_lag_48,-0.03849386383942521,0.03849386383942521
+12,External temperature (Celsius degree)_lag_6,0.02287427797388271,0.02287427797388271
+7,week,0.018441858657971932,0.018441858657971932

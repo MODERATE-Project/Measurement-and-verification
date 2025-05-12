@@ -1,0 +1,15 @@
+scikit-image
+scikit-learn
+scipy
+plotly
+numpy
+seaborn
+lightgbm
+cloudpickle
+optuna
+pyecharts
+matplotlib
+matplotlib-inline
+pandas
+tensorflow
+shap

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <title>Model Report</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <a href="https://energyefficientbuilding.eurac.edu/en/">
+            <img src="/Users/dantonucci/Library/CloudStorage/OneDrive-ScientificNetworkSouthTyrol/00_GitHubProject/MODERATE_building_benchmarking/anomalies_detection/M&V/report/static/img/eurac_new_logo_special.png" alt="Eurac Energy Efficient Building Logo">
+          </a>
+        </div>
+    </header>
+    <footer style="height: 200px; padding-top: 20px;">
+        <div style="max-width: 768px; margin: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                
+                <!-- Left column with logo and text -->
+                <div style="max-width: 380px;">
+                  <img src="/static/assets/moderate_logo.png" alt="Moderate Logo" style="width: 70%; height: 60px;">
+                  <p style="color: rgb(134, 142, 150); font-size: 12px; margin-top: 5px; line-height: 1.55;">
+                    Horizon Europe research and innovation programme under grant agreement No 101069834. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or CINEA. Neither the European Union nor the granting authority can be held responsible for.
+                  </p>
+                </div>
+          
+                <!-- Right column with links -->
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 10px; margin-top: 0;">About MODERATE</h3>
+                  <a href="https://moderate-project.eu/in-a-nutshell/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">In a nutshell</a>
+                  <a href="https://moderate-project.eu/news/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">News</a>
+                  <a href="https://moderate-project.eu/contact/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">Contact</a>
+                </div>
+          
+              </div>
+            </div>
+    </footer>              
+    <main class="main" id="main" style="width: 100vw; margin:0px">
+        
+        <div class="container">
+            <div class="title" style="margin-top:10px">
+                <h1>Energy model definition</h1>
+            </div>
+            <!-- Baseline Period: Training -->
+            <p class="title2" style="margin-left: 2rem; color: #EAB93B">
+                BASELINE 
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Model Training</h2>
+            <hr class="title-line" style="background-color: #EAB93B; border:1px solid #EAB93B">
+            <!-- Grafico inserito -->
+            {{ line_chart_train|safe }}
+
+            <!-- Baseline Period:Testing -->
+            <p class="title2" style="margin-left: 2rem; color: #EAB93B">
+                BASELINE
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Model Testing</h2>
+            <hr class="title-line" style="background-color: #EAB93B; border:1px solid #EAB93B">
+            <!-- Grafico inserito -->
+            {{ line_chart_test|safe }}
+
+            <!-- Model Performance -->
+            <p class="title2" style="margin-left: 2rem;">
+                Model Performance
+            </p>
+            <h2 style="margin-left: 2rem; color: var(--black); margin-bottom: 2px;">Evaluation metrics</h2>
+            <hr class="title-line" style="background-color: #6BAEE2; border:1px solid #6BAEE2"> 
+       
+            <div class="fieldset-container">
+                <fieldset>
+                    <legend>Train</legend>
+                        <div class="grid">
+                            <div class="paper">
+                                <div class="card">
+                                    <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
+                                    <h1>{{ mae }}</h1>
+                                    <h6>Mean absolute error</h6>
+                                </div>
+                            </div>
+                            <div class="paper">
+                                <div class="card">
+                                    <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
+                                    <h1>{{ r2 }}</h1>
+                                    <h6>R² Score</h6>
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+        
+                <fieldset>
+                    <legend>Test</legend>
+                        <div class="grid">
+                            <div class="paper">
+                                <div class="card">
+                                    <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
+                                    <h1>{{ mae }}</h1>
+                                    <h6>Mean absolute error</h6>
+                                </div>
+                            </div>
+                            <div class="paper">
+                                <div class="card">
+                                    <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
+                                    <h1>{{ r2 }}</h1>
+                                    <h6>R² Score</h6>
+                                </div>
+                            </div>
+                        </div>
+                </fieldset>
+            </div>
+
+            <div class="grid" style = 'margin-top: 2rem; margin-left: 2rem; margin-right: 2rem;'>
+                <!-- Primo Accordion -->
+                <div class="accordion">
+                  
+                <div class="accordion-item">
+                    <input type="checkbox" id="acc1-1">
+                    <label class="accordion-title" for="acc1-1">
+                      Actual values vs Predicted values <span class="icon"></span>
+                    </label>
+                    <div class="accordion-content">
+                        <h3>What Does the Chart Represent?</h3>
+                        <p><strong>X-axis:</strong> Actual values from observed data.</p>
+                        <p><strong>Y-axis:</strong> Predicted values from the model.</p>
+                        <p>Each point represents a single observation — its position shows how well the model predicted compared to the true value.</p>
+
+                        <input type="checkbox" id="show-more" class="show-more-toggle">
+                        <div class="extra-content">
+                            <h4>📈 The 45° Line (y = x)</h4>
+                            <ul>
+                            <li>This diagonal line represents perfect prediction: <strong>predicted = actual</strong>.</li>
+                            <li>Point on the line → perfect prediction.</li>
+                            <li>Point <strong>above</strong> the line → overestimation.</li>
+                            <li>Point <strong>below</strong> the line → underestimation.</li>
+                            </ul>
+
+                            <h4>✅ Why Is This Useful?</h4>
+                            <ul>
+                            <li><strong>Assessing prediction quality:</strong>
+                                <ul>
+                                <li>Points far from the line → large errors.</li>
+                                <li>Points close to the line → good predictions.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Identifying bias:</strong>
+                                <ul>
+                                <li>If the model consistently over- or under-predicts in certain value ranges.</li>
+                                </ul>
+                            </li>
+                            </ul>
+                        </div>
+                        <label for="show-more" class="show-more-label"></label>
+                    </div>
+                    {{ actual_vs_predicted_scatter|safe }}
+                </div>
+                  
+                <div class="accordion-item", style = "margin-top:1rem">
+                    <input type="checkbox" id="acc1-2">
+                    <label class="accordion-title" for="acc1-2">
+                        Residual distribution <span class="icon"></span>
+                    </label>
+                    <div class="accordion-content">
+                        <div>
+                            <h2>📊 Residuals Distribution – What Does This Chart Tell Us?</h2>
+                            
+                            <p><strong>Residuals</strong> are the differences between the actual values and the predicted values from a model:</p>
+                            
+                            <pre><code>Residual = Actual - Predicted</code></pre>
+                            
+                            <p>The histogram shows how these residuals are distributed. This is important to assess how well the model is performing and to check for systematic errors.</p>
+                            
+                            <h3>📈 What to look for:</h3>
+                            <ul>
+                              <li><strong>Centered around 0:</strong> A good model will produce residuals mostly centered around zero.</li>
+                              <li><strong>Symmetric shape:</strong> Suggests that errors are evenly distributed (no bias).</li>
+                              <li><strong>Spread:</strong> A narrower distribution indicates higher model precision.</li>
+                            </ul>
+                            <input type="checkbox" id="show-more_2" class="show-more-toggle">
+                            <div class="extra-content">
+                                <h3>🔴 Vertical red dashed line at x = 0:</h3>
+                                <p>This line represents <strong>perfect prediction</strong> (no error).</p>
+                                
+                                <h3>🟢 KDE Line (Green Curve):</h3>
+                                <p>The <strong>Kernel Density Estimate (KDE)</strong> provides a smoothed version of the histogram, helping you see the overall shape of the residual distribution.</p>
+                                
+                                <h3>✅ Why it's useful:</h3>
+                                <ul>
+                                <li>Helps identify if the model tends to over- or under-predict.</li>
+                                <li>Highlights potential bias or skew in predictions.</li>
+                                <li>Supports decisions on model improvements or retraining.</li>
+                                </ul>
+                            </div>
+                            <label for="show-more_2" class="show-more-label"></label>
+                        </div>                        
+                    </div>
+                  </div>
+                  {{ residual_distribution|safe }}  
+                </div>
+              
+                <!-- Third Accordion -->
+                <div class="accordion">
+
+                <div class="accordion-item">
+                    <input type="checkbox" id="acc2-1">
+                    <label class="accordion-title" for="acc2-1">
+                        Residual distribution <span class="icon"></span>
+                    </label>
+                    <div class="accordion-content">
+                        <div style="font-family: Arial, sans-serif; max-width: 800px; line-height: 1.6;">
+                            <h2>📉 Residuals vs Predicted Values</h2>
+                          
+                            <p>
+                              This scatter plot helps evaluate how well the model is performing by showing the <strong>residuals</strong> (the difference between actual and predicted values) plotted against the predicted values.
+                            </p>
+                          
+                            <h3>🔍 What is a residual?</h3>
+                            <p>
+                              A residual is the error for a given data point: <br />
+                              <code>Residual = Actual - Predicted</code><br />
+                              It tells us how far off the prediction was for that observation.
+                            </p>
+                          
+                            <h3>📌 How to interpret the plot:</h3>
+                            <ul>
+                              <li><strong>X-axis:</strong> Predicted values from the model.</li>
+                              <li><strong>Y-axis:</strong> Residuals (errors).</li>
+                              <li>A <strong>horizontal red dashed line at y = 0</strong> shows where residuals would be if the predictions were perfect.</li>
+                              <li>Points scattered <strong>randomly around 0</strong> suggest that the model performs well and no patterns are left in the errors.</li>
+                              <li>A visible pattern or trend in the residuals may indicate issues like heteroscedasticity or model bias.</li>
+                            </ul>
+                          
+                            <h3>✅ Why is this useful?</h3>
+                            <ul>
+                              <li>It helps detect if the model systematically under- or over-predicts.</li>
+                              <li>It's a key step in diagnosing model quality and assumptions.</li>
+                              <li>It supports improvement through model refinement or feature engineering.</li>
+                            </ul>
+                          </div>
+                          
+                    </div>
+                    {{ residual_vs_predicted_values|safe }}
+                </div>
+
+                    <div class="accordion-item" style = "margin-top:1rem">
+                        <input type="checkbox" id="acc2-2">
+                        <label class="accordion-title" for="acc2-2">
+                          Top 10 Features by coefficient magnitude <span class="icon"></span>
+                        </label>
+                        <div class="accordion-content">
+                            <h2>📊 Top 10 Features by Coefficient Magnitude</h2>
+                                
+                            <p>This bar chart displays the <strong>top 10 most influential features</strong> in a machine learning model, based on the absolute value of their coefficients.</p>
+                            
+                            <h3>🧠 What are coefficients?</h3>
+                            <p>In linear models (like linear regression or Lasso), each feature is assigned a <strong>coefficient</strong> that represents its impact on the prediction. The <strong>larger the absolute value</strong>, the more influence the feature has.</p>
+                            
+                            <h3>📌 How to interpret the chart:</h3>
+                            <ul>
+                                <li><strong>Y-axis:</strong> Feature names (e.g., internal temperature, external temperature).</li>
+                                <li><strong>X-axis:</strong> Coefficient values (positive or negative).</li>
+                                <li><strong>Bar length:</strong> Indicates how strongly the feature contributes to the prediction.</li>
+                                <li><strong>Positive coefficient:</strong> The feature increases the predicted value.</li>
+                                <li><strong>Negative coefficient:</strong> The feature decreases the predicted value.</li>
+                            </ul>
+                            
+                            <h3>✅ Why this is useful:</h3>
+                            <ul>
+                                <li>Helps you understand which features are driving your model's predictions.</li>
+                                <li>Useful for feature selection and model interpretability.</li>
+                                <li>Can help identify important patterns in the data (e.g., which temperatures are most predictive).</li>
+                            </ul>
+                        </div>
+                        {{ fetaures_importance|safe }}
+                    </div>
+                
+                </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
