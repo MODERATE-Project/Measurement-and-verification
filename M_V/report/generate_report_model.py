@@ -4,6 +4,20 @@ import pandas as pd
 import function_graphs as BlgGraphs
 from functions_report_analysis import *
 
+# Local evaluation 
+# os.chdir("report")
+
+# ====MAE AND R2====
+try:
+    model_result = pd.read_csv("model_result_HVAC_energy_model_winter.csv")
+except:
+    model_result = pd.read_csv("model_result_HVAC_energy_model_summer.csv")
+    
+mae_train = model_result['mae_train'].values[0].round(2).tolist()
+r2_train = model_result['r2_train'].values[0].round(2).tolist()
+mae_test = model_result['mae_test'].values[0].round(2).tolist()
+r2_test = model_result['r2_test'].values[0].round(2).tolist()
+
 
 # === DATA ===
 # Genera grafico
@@ -119,11 +133,11 @@ fetaures_importance = BlgGraphs.features_importance(
 # Carica e compila template HTML
 env = Environment(loader=FileSystemLoader("."))
 template = env.get_template("template_model_generation.html")
-mae=2
-r2=2
 html_output = template.render(
-    mae=mae, 
-    r2=r2, 
+    mae_train=mae_train, 
+    r2_train=r2_train, 
+    mae_test=mae_test, 
+    r2_test=r2_test, 
     line_chart_train=linechart_actual_vs_predicted_train,
     line_chart_test=linechart_actual_vs_predicted_test,
     actual_vs_predicted_scatter = metrics_actual_vs_predicted, 

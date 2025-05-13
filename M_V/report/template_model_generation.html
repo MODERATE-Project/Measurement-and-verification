@@ -9,33 +9,11 @@
     <header>
         <div class="logo">
           <a href="https://energyefficientbuilding.eurac.edu/en/">
-            <img src="/Users/dantonucci/Library/CloudStorage/OneDrive-ScientificNetworkSouthTyrol/00_GitHubProject/MODERATE_building_benchmarking/anomalies_detection/M&V/report/static/img/eurac_new_logo_special.png" alt="Eurac Energy Efficient Building Logo">
+            <img src="static/img/eurac_new_logo_special.png" alt="Eurac Energy Efficient Building Logo">
           </a>
         </div>
     </header>
-    <footer style="height: 200px; padding-top: 20px;">
-        <div style="max-width: 768px; margin: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                
-                <!-- Left column with logo and text -->
-                <div style="max-width: 380px;">
-                  <img src="/static/assets/moderate_logo.png" alt="Moderate Logo" style="width: 70%; height: 60px;">
-                  <p style="color: rgb(134, 142, 150); font-size: 12px; margin-top: 5px; line-height: 1.55;">
-                    Horizon Europe research and innovation programme under grant agreement No 101069834. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or CINEA. Neither the European Union nor the granting authority can be held responsible for.
-                  </p>
-                </div>
-          
-                <!-- Right column with links -->
-                <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 10px; margin-top: 0;">About MODERATE</h3>
-                  <a href="https://moderate-project.eu/in-a-nutshell/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">In a nutshell</a>
-                  <a href="https://moderate-project.eu/news/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">News</a>
-                  <a href="https://moderate-project.eu/contact/" style="color: rgb(134, 142, 150); font-size: 14px; padding-top: 3px; padding-bottom: 3px; font-weight: 500;">Contact</a>
-                </div>
-          
-              </div>
-            </div>
-    </footer>              
+
     <main class="main" id="main" style="width: 100vw; margin:0px">
         
         <div class="container">
@@ -74,14 +52,14 @@
                             <div class="paper">
                                 <div class="card">
                                     <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
-                                    <h1>{{ mae }}</h1>
+                                    <h1>{{ mae_train }}</h1>
                                     <h6>Mean absolute error</h6>
                                 </div>
                             </div>
                             <div class="paper">
                                 <div class="card">
                                     <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
-                                    <h1>{{ r2 }}</h1>
+                                    <h1>{{ r2_train }}</h1>
                                     <h6>R² Score</h6>
                                 </div>
                             </div>
@@ -94,14 +72,14 @@
                             <div class="paper">
                                 <div class="card">
                                     <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
-                                    <h1>{{ mae }}</h1>
+                                    <h1>{{ mae_test }}</h1>
                                     <h6>Mean absolute error</h6>
                                 </div>
                             </div>
                             <div class="paper">
                                 <div class="card">
                                     <!-- <p style="color:black;">Mean Absolute Error (MAE)</p> -->
-                                    <h1>{{ r2 }}</h1>
+                                    <h1>{{ r2_test }}</h1>
                                     <h6>R² Score</h6>
                                 </div>
                             </div>
@@ -277,6 +255,33 @@
 
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-footer"> 
+            <div class="container" style="margin-bottom: 0rem; box-shadow: none; border-radius: 0px;">
+                <div class="footer-content">
+                
+                <!-- Left -->
+                <div class="footer-left">
+                    <img src="static/img/moderate_logo.png" alt="Moderate Logo">
+                    <p>
+                    Horizon Europe research and innovation programme under grant agreement No 101069834. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or CINEA. Neither the European Union nor the granting authority can be held responsible for.
+                    </p>
+                </div>
+    
+                <!-- Right -->
+                <div class="footer-right">
+                    <h3>About MODERATE</h3>
+                    <a href="https://moderate-project.eu/in-a-nutshell/">In a nutshell</a>
+                    <a href="https://moderate-project.eu/news/">News</a>
+                    <a href="https://moderate-project.eu/contact/">Contact</a>
+                </div>
+    
+                </div>
+            </div>
+        </div>
+    </footer> 
 
 </body>
 </html>

@@ -504,7 +504,7 @@ def model_generation(
     data_model = load_pickle_inputs(f"{folder_path}/{model_name}.pkl")
 
     # validate the best model through staatistical analysis 
-    model, _, _, _, _, _, _, _, df_results, df_results_train, _, df_results_reporting= enhanced_linear_regression(
+    model, _, mae_train, r2_train, mae_test, r2_test, _, _, df_results, df_results_train, _, df_results_reporting= enhanced_linear_regression(
         df_training=data_model['df_training'],
         df_testing=data_model['df_testing'],
         df_reporting=data_model['df_reporting'],
@@ -517,7 +517,16 @@ def model_generation(
     if save_model:
         df_results_reporting.to_csv(temperature_file_path)
 
-    return data_model, df_results, df_results_train, df_results_reporting
+    model_result = pd.DataFrame({
+        'mae_train': [mae_train],
+        'r2_train': [r2_train],
+        'mae_test': [mae_test],
+        'r2_test': [r2_test]
+    })
+
+    model_result.to_csv(f"report/model_result_{model_name}.csv")
+
+    return data_model, df_results, df_results_train, df_results_reporting, model_result
 
 
 def analysis_of_result(df_, df_results_reporting: pd.DataFrame, df_results_train: pd.DataFrame, name_file_graph: str, temp_predicted: pd.DataFrame, time_reporting:list):

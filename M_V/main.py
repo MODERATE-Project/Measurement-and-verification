@@ -134,7 +134,7 @@ def pipeline_temp_and_energy():
     )
 
     data_model = load_pickle_inputs(f"{folder_path}/{model_name}.pkl")
-    model, _, _, _, _, _, _, _, df_results, df_results_train, _, df_results_reporting = enhanced_linear_regression(
+    model, _, mae_train, r2_train, mae_test, r2_test, _, _, df_results, df_results_train, _, df_results_reporting = enhanced_linear_regression(
         df_training=data_model['df_training'],
         df_testing=data_model['df_testing'],
         df_reporting=data_model['df_reporting'],
